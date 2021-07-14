@@ -1,8 +1,6 @@
 import { BadRequestException, Module } from '@nestjs/common';
 import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import multer from 'multer';
-import path from 'path';
 
 import { CandidatesController } from './candidates.controller';
 import { CandidatesService } from './candidates.service';
