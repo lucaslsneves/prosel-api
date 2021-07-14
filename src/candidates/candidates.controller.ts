@@ -6,18 +6,20 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
+import { CandidatesService } from './candidates.service';
+import { CandidateBodyDto } from './dto/candidate-body.dto';
 
-@Controller('candidate')
+@Controller('candidates')
 export class CandidatesController {
+  constructor(private readonly candidatesService: CandidatesService) {}
+
   @Get()
   @UseInterceptors(AnyFilesInterceptor())
   create(
-    @Body() body: any,
-    @UploadedFiles() files: Array<Express.Multer.File>,
+    @UploadedFiles()
+    files: Array<Express.Multer.File>,
+    @Body() body: CandidateBodyDto,
   ): any {
-    return {
-      files,
-      step: body.step,
-    };
+    console.log(body);
   }
 }

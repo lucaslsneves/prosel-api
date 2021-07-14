@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { MulterModule } from '@nestjs/platform-express';
 import { Candidate } from './candidates/entities/candidate.entity';
 import { CandidatesModule } from './candidates/candidates.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -17,10 +18,6 @@ import { CandidatesModule } from './candidates/candidates.module';
       database: process.env.DB_NAME,
       entities: [Candidate],
       synchronize: process.env.DB_SYNC === 'true',
-    }),
-
-    MulterModule.register({
-      dest: './uploads',
     }),
 
     CandidatesModule,
